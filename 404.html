@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>home</title>
+<style>
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+    background: #0a0a0a; overflow: hidden;
+    user-select: none; -webkit-user-select: none;
+  }
+  pre {
+    margin: 0; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    color: #39ff14;
+    font: 700 min(2.2vw, 22px)/1.15 "Consolas", "Courier New", monospace;
+    text-shadow: 0 0 8px rgba(57, 255, 20, .45);
+    white-space: pre;
+  }
+</style>
+</head>
+<body>
+<pre id="_"></pre>
+<script>
+(function () {
+  "use strict";
+
+  // Assembled at runtime from letter fragments — block glyphs only
+  // (█ + space), so every row is one repeated char wide and can't misalign.
+  var G = {
+    F: ["██████ ", "██     ", "█████  ", "██     ", "██     "],
+    U: ["██   ██", "██   ██", "██   ██", "██   ██", " █████ "],
+    C: [" ██████", "██     ", "██     ", "██     ", " ██████"],
+    K: ["██   ██", "██  ██ ", "████   ", "██  ██ ", "██   ██"],
+    O: [" ██████ ", "██    ██", "██    ██", "██    ██", " ██████ "],
+    S: [" ██████", "██     ", "██████ ", "     ██", "██████ "],
+    I: ["████", " ██ ", " ██ ", " ██ ", "████"],
+    D: ["█████  ", "██   ██", "██   ██", "██   ██", "█████  "]
+  };
+  var WORDS = [["F", "U", "C", "K"], ["O", "F", "F"], ["S", "K", "I", "D"]];
+  var L = [];
+  for (var r = 0; r < 5; r++) {
+    var row = "";
+    for (var w = 0; w < WORDS.length; w++) {
+      if (w) row += "     ";
+      for (var c = 0; c < WORDS[w].length; c++) {
+        if (c) row += "   ";
+        row += G[WORDS[w][c]][r];
+      }
+    }
+    L.push(row);
+  }
+
+  var pre = document.getElementById("_");
+  pre.textContent = L.join("\n");
+
+  // --- speed bumps (trolling only — not security) -----------------------
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  document.addEventListener("keydown", function (e) {
+    var k = (e.key || "").toLowerCase();
+    if (e.ctrlKey && (k === "s" || k === "u")) e.preventDefault();
+  });
+
+  // console troll
+  try { console.clear(); } catch (_) {}
+  try {
+    console.log("%cSTOP SKIDDING LOL", "color:#39ff14;font-size:42px;font-weight:900;text-shadow:0 0 6px #39ff14;");
+    console.log("%cnothing here for you. the lua is not on this page.", "color:#888;font-size:14px;");
+  } catch (_) {}
+})();
+</script>
+</body>
+</html>
